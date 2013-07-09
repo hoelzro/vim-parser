@@ -1,0 +1,68 @@
+=pod
+
+=head1 NAME
+
+Vim::Parser - A Perl module for parsing Vimscript
+
+=head1 VERSION
+
+version 0.01
+
+=head1 SYNOPSIS
+
+    use Vim::Parser;
+
+    my $parse_tree = Vim::Parser->parse_string($vimscript);
+    # - or -
+    my $parse_tree = Vim::Parser->parse_file($vimscript_file);
+    # XXX flesh out example of what the parse tree looks like
+
+=head1 DESCRIPTION
+
+This module implements a parser for Vimscript, the configuration and
+scripting language used by the Vim text editor.
+
+=head1 METHODS
+
+=head2 Vim::Parser->parse_string($string)
+
+Parses the Vimscript code contained in C<$string>.  Returns a parse
+tree that represents the parsed code.
+
+=head2 Vim::Parser->parse_file($filename_or_filehandle)
+
+Parses the Vimscript code contained in C<$filename_or_filehandle>,
+which can be a filename or a filehandle.  Returns a parse tree like
+L<""/parse_string|parse_string> does.
+
+=head1 A WORD ON PARSING BAD SCRIPTS
+
+I'm writing this module chiefly to provide a parser for
+L<vimlint|https://github.com/hoelzro/vimlint>, so its requirements are
+(currently) fairly specific to the use cases required by vimlint.  vimlint
+will assume that its inputs are valid Vimscript, so this module (at least for
+now) will as well.  So if you pass an invalid Vimscript document to this
+parser, the return value is undefined.  I don't mean 'undefined' as in
+C<undef>; I mean undefined as in you can't rely on it.  This may (and will
+probably) change in the future.
+
+=head1 AUTHOR
+
+Rob Hoelz <rob@hoelz.ro>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Rob Hoelz.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=head1 BUGS
+
+Please report any bugs or feature requests on the bugtracker website
+https://github.com/hoelzro/vim-parser/issues
+
+When submitting a bug or request, please include a test-file or a
+patch to an existing test-file that illustrates the bug or desired
+feature.
+
